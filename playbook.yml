@@ -1,0 +1,28 @@
+---
+- name: run nginx
+  hosts: localhost
+  tasks:
+
+    - name: docker existence
+      command: docker --version
+      register: docker_version
+      ignore_errors: yes
+
+    - name: docker not exists
+      become: yes
+      script:
+        cmd: /opt/docker_dwld.sh
+        argv: 
+          - -y
+      register: docker_dwld_status
+      when: docker_version.rc != 0      
+      ignore_errors: yes
+
+    - name: docker installation
+      script: /opt/run_nginx.sh
+      register: data
+      when: docker_dwld_status.rc==0 or docker_version.rc == 0
+      
+    - name: debug data
+      debug: 
+        msg: "{{ data.stdout_lines }}"
