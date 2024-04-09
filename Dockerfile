@@ -1,4 +1,4 @@
-FROM ansible_python
+FROM ubuntu_pypip_ans
 
 COPY . ./opt 
 

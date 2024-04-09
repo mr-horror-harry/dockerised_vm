@@ -8,7 +8,7 @@
       register: docker_version
       ignore_errors: yes
 
-    - name: docker not exists
+    - name: installing docker
       become: yes
       script:
         cmd: /opt/docker_dwld.sh
@@ -18,10 +18,10 @@
       when: docker_version.rc != 0      
       ignore_errors: yes
 
-    - name: docker installation
+    - name: run nginx container
       script: /opt/run_nginx.sh
       register: data
-      when: docker_dwld_status.rc==0 or docker_version.rc == 0
+      when: docker_dwld_status.rc == 0 or docker_version.rc == 0
       
     - name: debug data
       debug: 

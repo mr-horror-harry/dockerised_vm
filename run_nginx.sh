@@ -1,6 +1,4 @@
-docker --version
+#!/bin/bash
+#!/bin/bash
 
-chkconfig docker on
-
-service docker start
-service docker status
+docker run hello-world

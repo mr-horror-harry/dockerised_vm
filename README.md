@@ -8,6 +8,15 @@ docker run -it --name my_ubuntu_container ubuntu:latest
 apt-get update
 apt-get install -y <package_name>
 
+(say)
+We need an ubuntu OS with python3, pip3, ansible with other basic requirements, then
+apt-get update
+apt-get install -y apt-utils
+apt install python3 python3-pip ansible systemd systemd-sysv dialog
+
+echo "[boot]" | sudo tee -a /etc/wsl.conf
+echo "systemd=true" | sudo tee -a /etc/wsl.conf
+
 # exit the container
 exit
 	

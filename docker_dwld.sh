@@ -1,5 +1,9 @@
+#!/bin/bash
+
+# ChatGPT Modified
 # Install dependencies
 apt-get update
+apt-get install -y apt-utils
 apt-get install -y ca-certificates curl
 
 # Add Docker's official GPG key
@@ -15,3 +19,10 @@ apt-get update
 
 # Install Docker packages
 apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Start Docker service
+systemctl start docker
+
+# Add the current user to the docker group
+# usermod -aG docker $USER
+
